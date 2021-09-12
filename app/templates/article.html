@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+
+<!--Content block-->
+{% block content %}
+  <div class="container-fluid">
+    <!-- Styles block -->
+    {% block styles%}
+        {{ super() }}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/article.css') }}">
+    {% endblock %}
+
+    <!--Heading-->
+    <div class="heading">
+      <h1>News Articles</h1>
+    </div>
+
+    <!--Artticles-->
+    <div class="articles-container">
+    {% for source_articles in articles %}
+      <div class=" col-xs-12 col-sm-2 col-md-6 col-lg-2 news-articles ">
+        <img src="{{ source_articles.urlToImage }}" alt="{{ source_articles.title }}">
+        <h4>{{ source_articles.title }}</h4>
+        <p>Published at: {{ source_articles.publishedAt }}</p>
+        <a href="{{ source_articles.url }}">Read more...</a>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+{% endblock %}
